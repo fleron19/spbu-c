@@ -18,12 +18,7 @@ bool bracketsBalanced(char *toTest)
         }
         i++;
     }
-    if (counter == 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return counter == 0;
 }
 
 int main(void)
