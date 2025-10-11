@@ -1,4 +1,6 @@
-int* mergeSort(int* up, int* down, unsigned int left, unsigned int right)
+#include "sorting.h"
+
+int* mergeSort(int* up, int* down, unsigned left, unsigned right)
 {
     if (left == right) {
         down[left] = up[left];
@@ -7,27 +9,27 @@ int* mergeSort(int* up, int* down, unsigned int left, unsigned int right)
 
     unsigned int middle = left + (right - left) / 2;
 
-    int* l_buff = mergeSort(up, down, left, middle);
-    int* r_buff = mergeSort(up, down, middle + 1, right);
+    int* lBuff = mergeSort(up, down, left, middle);
+    int* rBuff = mergeSort(up, down, middle + 1, right);
 
-    int* target = l_buff == up ? down : up;
+    int* target = lBuff == up ? down : up;
 
-    unsigned int l_cur = left, r_cur = middle + 1;
+    unsigned int lCur = left, rCurr = middle + 1;
     for (unsigned int i = left; i <= right; i++) {
-        if (l_cur <= middle && r_cur <= right) {
-            if (l_buff[l_cur] < r_buff[r_cur]) {
-                target[i] = l_buff[l_cur];
-                l_cur++;
+        if (lCur <= middle && rCurr <= right) {
+            if (lBuff[lCur] < rBuff[rCurr]) {
+                target[i] = lBuff[lCur];
+                lCur++;
             } else {
-                target[i] = r_buff[r_cur];
-                r_cur++;
+                target[i] = rBuff[rCurr];
+                rCurr++;
             }
-        } else if (l_cur <= middle) {
-            target[i] = l_buff[l_cur];
-            l_cur++;
+        } else if (lCur <= middle) {
+            target[i] = lBuff[lCur];
+            lCur++;
         } else {
-            target[i] = r_buff[r_cur];
-            r_cur++;
+            target[i] = rBuff[rCurr];
+            rCurr++;
         }
     }
     return target;
