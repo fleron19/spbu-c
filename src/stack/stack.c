@@ -1,45 +1,49 @@
-#include "stack.h"
+#include <stdio.h>
 #include <stdlib.h>
 
-struct StackNode {
-    char value;
-    struct StackNode* next;
-};
-struct Stack {
-    struct StackNode* head;
-};
+typedef struct StackNode StackNode;
 
-Stack* newStack(void)
+struct StackNode {
+    int value;
+    StackNode* next;
+};
+typedef struct {
+    StackNode* head;
+} Stack;
+
+Stack new(void)
 {
-    Stack* stack = calloc(1, sizeof(*stack));
+    Stack stack = { .head = NULL };
     return stack;
 }
 
-void push(Stack* stack, char value)
+void push(Stack* stack, int value)
 {
-    struct StackNode* node = (struct StackNode*)malloc(sizeof(struct StackNode));
+    StackNode* node = (StackNode*)malloc(sizeof(StackNode*));
 
     node->value = value;
     node->next = stack->head;
     stack->head = node;
 }
-char pop(Stack* stack)
+int pop(Stack* stack)
 {
-    struct StackNode* oldNode = stack->head;
-    char res = oldNode->value;
+    StackNode* oldNode = stack->head;
+    int res = oldNode->value;
     stack->head = oldNode->next;
 
     free(oldNode);
     return res;
 }
-bool isEmpty(Stack* stack)
+int main(void)
 {
-    return stack->head == NULL;
-}
-void deleteStack(Stack* stack)
-{
-    while (!isEmpty(stack)) {
-        pop(stack);
-    }
-    free(stack);
+    Stack stack = new ();
+
+    push(&stack, 1);
+    push(&stack, 2);
+
+    int a = pop(&stack);
+
+    printf("%d\n", a);
+
+    return 0;
 }
