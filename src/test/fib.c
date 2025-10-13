@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 int evenFibSum(int notBigger) // sum of fibonacci numbers, that <= notBigger
 {
@@ -20,5 +19,5 @@ int evenFibSum(int notBigger) // sum of fibonacci numbers, that <= notBigger
 
 int main(void)
 {
-    printf("%d", fibSum(1000000));
+    printf("%d", evenFibSum(1000000));
 }
