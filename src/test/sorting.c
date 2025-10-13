@@ -1,13 +1,13 @@
 #include <stdio.h>
 
-void swap(int* a, int* b)
+void swap(int* a, int* b) // a and b are pointers to integers that need to be swapped
 { // swap elements
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
-void gnomeSort(int arr[], int n)
+void gnomeSort(int arr[], int n) // arr is array that needs to be sorted, n is its size
 {
     int index = 0;
     while (index < n) {
