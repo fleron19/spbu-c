@@ -1,7 +1,8 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-int fibSum(int notBigger){
+int evenFibSum(int notBigger) // sum of fibonacci numbers, that <= notBigger
+{
     int sum = 0;
     int num1 = 0;
     int num2 = 1;
