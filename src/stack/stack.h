@@ -1,6 +1,5 @@
 #pragma once
 
-
 typedef struct {
     char value;
     struct StackNode* next;
