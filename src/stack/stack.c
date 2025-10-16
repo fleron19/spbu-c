@@ -1,13 +1,12 @@
+#include "stack.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "stack.h"
 
-  
 struct StackNode {
     char value;
     struct StackNode* next;
 };
-struct Stack{
+struct Stack {
     struct StackNode* head;
 };
 
@@ -27,7 +26,7 @@ void push(Stack* stack, char value)
 }
 char pop(Stack* stack)
 {
-      if (stack->head == NULL) {
+    if (stack->head == NULL) {
         return '\0';
     }
     struct StackNode* oldNode = stack->head;
@@ -37,4 +36,3 @@ char pop(Stack* stack)
     free(oldNode);
     return res;
 }
-
