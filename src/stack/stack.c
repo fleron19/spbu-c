@@ -1,49 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "stack.h"
 
-typedef struct StackNode StackNode;
-
+  
 struct StackNode {
-    int value;
-    StackNode* next;
+    char value;
+    struct StackNode* next;
 };
-typedef struct {
-    StackNode* head;
-} Stack;
+struct Stack{
+    struct StackNode* head;
+};
 
-Stack new(void)
+Stack newStack(void)
 {
     Stack stack = { .head = NULL };
     return stack;
 }
 
-void push(Stack* stack, int value)
+void push(Stack* stack, char value)
 {
-    StackNode* node = (StackNode*)malloc(sizeof(StackNode*));
+    struct StackNode* node = (struct StackNode*)malloc(sizeof(struct StackNode));
 
     node->value = value;
     node->next = stack->head;
     stack->head = node;
 }
-int pop(Stack* stack)
+char pop(Stack* stack)
 {
-    StackNode* oldNode = stack->head;
-    int res = oldNode->value;
+      if (stack->head == NULL) {
+        return '\0';
+    }
+    struct StackNode* oldNode = stack->head;
+    char res = oldNode->value;
     stack->head = oldNode->next;
 
     free(oldNode);
     return res;
 }
-int main(void)
-{
-    Stack stack = new ();
 
-    push(&stack, 1);
-    push(&stack, 2);
-
-    int a = pop(&stack);
-
-    printf("%d\n", a);
-
-    return 0;
-}
