@@ -6,14 +6,14 @@
 
 bool isValid(char* str)
 {
-    Stack stack = newStack();
+    Stack* stack = newStack();
     for (int i = 0; i < strlen(str); i ++) {
         if ((str[i] == '(') || (str[i] == '[') || (str[i] == '{')) {
-            push(&stack, str[i]);
+            push(stack, str[i]);
         }
         else if ((str[i] == ')') || (str[i] == ']') || (str[i] == '}')) {
-            if (stack.head != NULL) {
-                char last = pop(&stack);
+            if (!isEmpty(stack)) {
+                char last = pop(stack);
                 if (((str[i] == ')') && (last != '(')) || ((str[i] == '}') && (last != '{')) || ((str[i] == ']') && (last != '['))){
                     return false;    
                 }
@@ -23,7 +23,7 @@ bool isValid(char* str)
             }
         }    
     }
-    return stack.head == NULL;
+    return isEmpty(stack);
 }
 int main(void)
 {   

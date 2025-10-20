@@ -1,14 +1,9 @@
 #pragma once
+#include <stdbool.h>
 
-typedef struct {
-    char value;
-    struct StackNode* next;
-} StackNode;
+typedef struct Stack Stack;
 
-typedef struct {
-    struct StackNode* head;
-} Stack;
-
-Stack newStack(void);
+Stack* newStack(void);
 void push(Stack* stack, char value);
 char pop(Stack* stack);
+bool isEmpty(Stack* stack);
