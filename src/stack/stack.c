@@ -10,9 +10,9 @@ struct Stack {
     struct StackNode* head;
 };
 
-Stack newStack(void)
+Stack* newStack(void)
 {
-    Stack stack = { .head = NULL };
+    Stack* stack = calloc(1, sizeof(*stack));
     return stack;
 }
 
@@ -35,4 +35,8 @@ char pop(Stack* stack)
 
     free(oldNode);
     return res;
+}
+bool isEmpty(Stack* stack)
+{
+    return stack->head == NULL;
 }
