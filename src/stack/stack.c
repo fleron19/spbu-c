@@ -40,3 +40,10 @@ bool isEmpty(Stack* stack)
 {
     return stack->head == NULL;
 }
+void deleteStack(Stack* stack)
+{
+    while (!isEmpty(stack)) {
+        pop(stack);
+    }
+    free(stack);
+}

@@ -21,7 +21,9 @@ bool isValid(char* str)
             }
         }
     }
-    return isEmpty(stack);
+    bool res = isEmpty(stack);
+    deleteStack(stack);
+    return res;
 }
 int main(void)
 {
