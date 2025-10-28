@@ -35,5 +35,6 @@ int main()
         printf("Введите номер операции: ");
         scanf("%d", &inp);
     }
+    deleteSortedList(list);
     return 0;
 }
