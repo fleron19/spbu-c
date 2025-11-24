@@ -1,0 +1,3 @@
+add_executable(brackets_balance brackets_balance.c)
+add_executable(null_elements null_elements.c)
+add_executable(substring_search substring_search.c)
