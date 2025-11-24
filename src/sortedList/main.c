@@ -57,19 +57,18 @@ int main(int argc, char** argv)
 {
     bool testMode = false;
     for (int i = 0; i < argc; ++i) {
-        if (strcmp(argv[i], "--test") == 0){
+        if (strcmp(argv[i], "--test") == 0) {
             testMode = true;
             break;
         }
     }
 
-    if (testMode){
-          bool (*tests[3])() = {&testIsEmpty, &testOneElement, &testDeletion};
+    if (testMode) {
+        bool (*tests[3])() = { &testIsEmpty, &testOneElement, &testDeletion };
         for (int testNum = 0; testNum < 3; ++testNum) {
             if (tests[testNum]()) {
                 printf(GREEN("Test %d passed!\n"), testNum + 1);
-            }
-            else{
+            } else {
                 printf(RED("Test %d failed!\n"), testNum + 1);
                 return 1;
             }
