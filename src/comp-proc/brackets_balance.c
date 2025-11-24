@@ -1,6 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
-bool bracketsBalanced(char* toTest)
+bool bracketsBalanced(const char* toTest)
 {
     int i = 0;
     int counter = 0;

@@ -1,5 +1,5 @@
 #include <stdio.h>
-int substringCount(char* str, char* substr)
+int substringCount(const char* str, const char* substr)
 {
     int counter = 0;
     int indstr = 0;
@@ -19,7 +19,7 @@ int substringCount(char* str, char* substr)
     return counter;
 }
 
-int main()
+int main(void)
 {
     printf("%d\n", substringCount("testtest12test", "test"));
     printf("%d\n", substringCount("testtest12test", "tt"));

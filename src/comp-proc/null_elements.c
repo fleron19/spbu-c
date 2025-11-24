@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int countNulls(int arr[], int size)
+int countNulls(const int arr[], int size)
 {
     int counter = 0;
     for (int i = 0; i < size; i++) {
@@ -11,7 +11,7 @@ int countNulls(int arr[], int size)
     return counter;
 }
 
-int main()
+int main(void)
 {
     const int SIZE = 5;
     int myArr[5] = { 1, 0, 4, 0, 0 };
