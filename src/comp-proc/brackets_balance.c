@@ -1,17 +1,16 @@
-#include <stdio.h>
 #include <stdbool.h>
-bool bracketsBalanced(char *toTest) 
+#include <stdio.h>
+bool bracketsBalanced(char* toTest)
 {
     int i = 0;
     int counter = 0;
-    while (toTest[i] != '\0'){
-        if (toTest[i] == '('){
+    while (toTest[i] != '\0') {
+        if (toTest[i] == '(') {
             counter++;
-        }
-        else {
+        } else {
             if (toTest[i] == ')') {
                 counter--;
-            } 
+            }
         }
         if (counter < 0) {
             return false;
