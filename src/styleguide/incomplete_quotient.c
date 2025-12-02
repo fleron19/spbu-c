@@ -1,5 +1,5 @@
 #include <stdio.h>
-void unsignedDivision(int dividend, int divisor, int *quotient, int *remainder)
+void unsignedDivision(int dividend, int divisor, int* quotient, int* remainder)
 {
     *quotient = 0;
     *remainder = dividend;
@@ -9,7 +9,7 @@ void unsignedDivision(int dividend, int divisor, int *quotient, int *remainder)
     }
 }
 
-void divisionWithRemainder(int dividend, int divisor, int *quotient, int *remainder)
+void divisionWithRemainder(int dividend, int divisor, int* quotient, int* remainder)
 {
     if (divisor != 0) {
         if (divisor < 0) {
@@ -19,22 +19,21 @@ void divisionWithRemainder(int dividend, int divisor, int *quotient, int *remain
         if (dividend < 0 && divisor > 0) {
             divisionWithRemainder(-dividend, divisor, quotient, remainder);
             *quotient = -*quotient;
-            if (*remainder != 0){
-                (*quotient) --;
+            if (*remainder != 0) {
+                (*quotient)--;
                 *remainder = divisor - *remainder;
             }
         }
-        if (divisor >  0 && dividend > 0) {
-            unsignedDivision(dividend, divisor, quotient, remainder);   
-        } 
-    }
-    else {
+        if (divisor > 0 && dividend > 0) {
+            unsignedDivision(dividend, divisor, quotient, remainder);
+        }
+    } else {
         printf("Zero division error!\n");
     }
 }
 
 int main(void)
-{  
+{
     int n = 15;
     int d = -4;
     int q = 0;
