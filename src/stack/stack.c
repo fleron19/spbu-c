@@ -1,11 +1,10 @@
 #include "stack.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 struct StackNode {
     char value;
     struct StackNode* next;
-};
+} __attribute__((aligned(16)));
 struct Stack {
     struct StackNode* head;
 };

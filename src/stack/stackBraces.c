@@ -1,8 +1,6 @@
 #include "stack.h"
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 bool isValid(char* str)
 {
@@ -17,10 +15,10 @@ bool isValid(char* str)
                 if ((ch == ')') && (last != '(')) {
                     deleteStack(stack);
                     return false;
-                } else if ((ch == '}') && (last != '{')) {
+                } if ((ch == '}') && (last != '{')) {
                     deleteStack(stack);
                     return false;
-                } else if ((ch == ']') && (last != '[')) {
+                } if ((ch == ']') && (last != '[')) {
                     deleteStack(stack);
                     return false;
                 }
