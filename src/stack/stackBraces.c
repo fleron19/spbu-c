@@ -17,12 +17,10 @@ bool isValid(char* str)
                 if ((ch == ')') && (last != '(')) {
                     deleteStack(stack);
                     return false;
-                }
-                else if ((ch == '}') && (last != '{')) {
+                } else if ((ch == '}') && (last != '{')) {
                     deleteStack(stack);
                     return false;
-                }
-                else if ((ch == ']') && (last != '[')) {
+                } else if ((ch == ']') && (last != '[')) {
                     deleteStack(stack);
                     return false;
                 }
