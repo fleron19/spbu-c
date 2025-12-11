@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 struct Node {
     int data;
@@ -99,4 +99,3 @@ void printList(struct LinkedList* list)
     }
     printf("END\n");
 }
-

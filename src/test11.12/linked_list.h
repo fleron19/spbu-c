@@ -8,4 +8,3 @@ void pushBack(struct LinkedList* list, int data);
 struct LinkedList* reverse(struct LinkedList* listin);
 void clearList(struct LinkedList* list);
 void printList(struct LinkedList* list);
-

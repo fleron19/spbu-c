@@ -11,7 +11,7 @@
 char* toArray(int number)
 {
     int n = 1;
-    if (number != 0){
+    if (number != 0) {
         n = log10(number) + 1;
     }
     int i;
@@ -28,7 +28,8 @@ char* make_smallest(int num)
     mergeSort(chnum, 0, log10(num));
     return chnum;
 }
-int tests() {
+int tests()
+{
     int test1num = 321;
     int test2num = 0;
     int test3num = 55555;
