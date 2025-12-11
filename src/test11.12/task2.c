@@ -28,6 +28,41 @@ char* make_smallest(int num)
     mergeSort(chnum, 0, log10(num));
     return chnum;
 }
+int tests() {
+    int test1num = 321;
+    int test2num = 0;
+    int test3num = 55555;
+    int test4num = 1234;
+    char* res1 = make_smallest(test1num);
+    char* res2 = make_smallest(test2num);
+    char* res3 = make_smallest(test3num);
+    char* res4 = make_smallest(test4num);
+    if (!strcmp(res1, "123")) {
+        printf(GREEN("Test 1 passed!\n"));
+    } else {
+        printf(RED("Test 1 failed!\n"));
+        return 1;
+    }
+    if (!strcmp(res2, "0")) {
+        printf(GREEN("Test 2 passed!\n"));
+    } else {
+        printf(RED("Test 2 failed!\n"));
+        return 1;
+    }
+    if (!strcmp(res3, "55555")) {
+        printf(GREEN("Test 3 passed!\n"));
+    } else {
+        printf(RED("Test 3 failed!\n"));
+        return 1;
+    }
+    if (!strcmp(res4, "1234")) {
+        printf(GREEN("Test 4 passed!\n"));
+    } else {
+        printf(RED("Test 4 failed!\n"));
+        return 1;
+    }
+    return 0;
+}
 
 int main(int argc, char** argv)
 {
@@ -40,39 +75,8 @@ int main(int argc, char** argv)
     }
 
     if (testMode) {
-        int test1num = 321;
-        int test2num = 0;
-        int test3num = 55555;
-        int test4num = 1234;
-        char* res1 = make_smallest(test1num);
-        char* res2 = make_smallest(test2num);
-        char* res3 = make_smallest(test3num);
-        char* res4 = make_smallest(test4num);
-        if (!strcmp(res1, "123")) {
-            printf(GREEN("Test 1 passed!\n"));
-        } else {
-            printf(RED("Test 1 failed!\n"));
-            return 1;
-        }
-        if (!strcmp(res2, "0")) {
-            printf(GREEN("Test 2 passed!\n"));
-        } else {
-            printf(RED("Test 2 failed!\n"));
-            return 1;
-        }
-        if (!strcmp(res3, "55555")) {
-            printf(GREEN("Test 3 passed!\n"));
-        } else {
-            printf(RED("Test 3 failed!\n"));
-            return 1;
-        }
-        if (!strcmp(res4, "1234")) {
-            printf(GREEN("Test 4 passed!\n"));
-        } else {
-            printf(RED("Test 4 failed!\n"));
-            return 1;
-        }
-        return 0;
+        int res = tests();
+        return res;
     }
     int num = 0;
     printf("Enter a number: ");
