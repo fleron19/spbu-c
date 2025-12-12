@@ -1,26 +1,28 @@
 #include "stack.h"
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
 bool isValid(char* str)
 {
     Stack* stack = newStack();
     for (int i = 0; i < (int)strlen(str); i++) {
-        char ch = str[i];
-        if ((ch == '(') || (ch == '[') || (ch == '{')) {
-            push(stack, ch);
-        } else if ((ch == ')') || (ch == ']') || (ch == '}')) {
+        char curr = str[i];
+        if ((curr == '(') || (curr == '[') || (curr == '{')) {
+            push(stack, curr);
+        } else if ((curr == ')') || (curr == ']') || (curr == '}')) {
             if (!isEmpty(stack)) {
                 char last = pop(stack);
-                if ((ch == ')') && (last != '(')) {
+                if ((curr == ')') && (last != '(')) {
                     deleteStack(stack);
                     return false;
                 }
-                if ((ch == '}') && (last != '{')) {
+                if ((curr == '}') && (last != '{')) {
                     deleteStack(stack);
                     return false;
                 }
-                if ((ch == ']') && (last != '[')) {
+                if ((curr == ']') && (last != '[')) {
                     deleteStack(stack);
                     return false;
                 }
@@ -36,7 +38,8 @@ bool isValid(char* str)
 }
 int main(void)
 {
-    char input[100];
+    const int BUFF = 100;
+    char input[BUFF];
     scanf("%[^\n]", input);
     bool res = isValid(input);
     if (res) {

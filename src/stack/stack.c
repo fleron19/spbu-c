@@ -26,7 +26,7 @@ void push(Stack* stack, char value)
 char pop(Stack* stack)
 {
     if (isEmpty(stack)) {
-        deleteStack(stack);
+        free(stack);
         exit(1);
     }
     struct StackNode* oldNode = stack->head;
