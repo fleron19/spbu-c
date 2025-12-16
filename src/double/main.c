@@ -15,7 +15,7 @@ void prinSm2p(double x)
     uint64_t u = db.u;
 
     int sign = (u >> 63) & 1;
-    uint64_t exp_bits = (u >> 52) & 0x7FFULL;
+    uint64_t expBits = (u >> 52) & 0x7FFULL;
     uint64_t frac = u & ((1ULL << 52) - 1);
     const int bias = 1023;
 
