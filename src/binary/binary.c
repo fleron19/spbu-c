@@ -19,7 +19,7 @@ int binToInt(char* num)
     if (num[0] == 0) {
         for (int i = 31; i >= 0; i--) {
             if (num[i]) {
-                res += 1 << 31 - i;
+                res += 1 << (31 - i);
             }
         }
         return res;
