@@ -10,7 +10,7 @@ struct BinaryNum {
 
 struct BinaryNum* intToBin(int32_t number)
 {
-    struct BinaryNum* binNum = { calloc(32, sizeof(bool)) };
+    struct BinaryNum* binNum = (struct BinaryNum*)(malloc(sizeof(struct BinaryNum)));
     for (int i = 0; i < 32; i++) {
         binNum->bits[31 - i] = (number >> i) & 1;
     }
@@ -25,6 +25,7 @@ int binToInt(struct BinaryNum* num)
         s += num->bits[i] * (1 << (31 - i));
     }
     res = -(num->bits[0] * (1 << 31)) + s;
+    return res;
 }
 void printBin(struct BinaryNum* num, bool full)
 {
@@ -46,7 +47,7 @@ void printBin(struct BinaryNum* num, bool full)
 
 struct BinaryNum* binSum(struct BinaryNum* f, struct BinaryNum* s)
 {
-    struct BinaryNum* res = { calloc(32, sizeof(char)) };
+    struct BinaryNum* res = (struct BinaryNum*)(malloc(sizeof(struct BinaryNum)));
     bool carry = 0;
     for (int i = 31; i >= 0; i--) {
         bool a = s->bits[i];
