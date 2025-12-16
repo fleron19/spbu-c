@@ -1,78 +1,58 @@
 #include "binary.h"
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-char* intToBin(int num)
+struct binaryNum {
+    bool bits[32];
+};
+
+struct binaryNum* intToBin(int32_t number)
 {
-    char* bits = calloc(32, sizeof(char));
+    struct binaryNum* binNum = { calloc(32, sizeof(bool)) };
     for (int i = 0; i < 32; i++) {
-        bits[31 - i] = (num >> i) & 1;
+        binNum->bits[31 - i] = (number >> i) & 1;
     }
-    return bits;
+    return binNum;
 }
 
-int binToInt(char* num)
+int binToInt(struct binaryNum* num)
 {
     int res = 0;
-    // if num - positive
-    if (num[0] == 0) {
-        for (int i = 31; i >= 0; i--) {
-            if (num[i]) {
-                res += 1 << 31 - i;
-            }
-        }
-        return res;
-    // if num - negative
-    } else {
-        for (int i = 31; i >= 0; i--) {
-            if (!num[i]) {
-                res += 1 << 31 - i;
-            }
-        }
-        res += 1;
-        return -res;
+    int s = 0;
+    for (int i = 31; i > 0; i--) {
+        s += num->bits[i] * (1 << (31 - i));
     }
+    res = -(num->bits[0] * (1 << 31)) + s;
 }
-void printBin(char* num, bool full)
+void printBin(struct binaryNum* num, bool full)
 {
+    // if we want to print binary without leading zeros, simply skip all the bits before we reach first 1
+    // then print all bits except last
+    // and always print last bit
     bool leading = full;
-    for (int i = 0; i < 32; i++) {
+    for (int i = 0; i < 31; i++) {
         if (!leading) {
-            leading = (num[i] == 1);
+            leading = num->bits[i];
         }
         if (leading) {
-            printf("%d", num[i]);
+            printf("%d", num->bits[i]);
         }
     }
-    if (!leading) {
-        printf("0");
-    }
+    printf("%d", num->bits[31]);
     printf("\n");
 }
 
-char* binSum(char* f, char* s)
+struct binaryNum* binSum(struct binaryNum* f, struct binaryNum* s)
 {
-    char* res = calloc(32, sizeof(char));
-    char d = 0;
-    char curr = 0;
+    struct binaryNum* res = { calloc(32, sizeof(char)) };
+    bool carry = 0;
     for (int i = 31; i >= 0; i--) {
-        curr = 0;
-        curr += s[i];
-        curr += f[i];
-        curr += d;
-        if (curr == 1){
-            res[i] = 1;
-            d = 0;
-        }
-        else if (curr == 2){
-            d = 1;
-        }
-        else if (curr == 3){
-            d = 1;
-            res[i] = 1;
-        }
-
+        bool a = s->bits[i];
+        bool b = f->bits[i];
+        res->bits[i] = a ^ b ^ carry;
+        carry = (a * b) + (carry * (a ^ b));
     }
     return res;
 }
