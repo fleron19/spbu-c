@@ -41,22 +41,21 @@ int popElementHead(LinkedList* list)
         list->head = nextNode;
         free(currNode);
         return val;
-        
+
     } else {
         return -1;
     }
 }
 
-int popElementBack(LinkedList* list) 
+int popElementBack(LinkedList* list)
 {
     if (!isEmpty(list)) {
         struct LinkedListNode* prevNode = list->head;
         struct LinkedListNode* currNode = prevNode->next;
         struct LinkedListNode* nextNode;
-        if (currNode){
+        if (currNode) {
             struct LinkedListNode* nextNode = prevNode->next;
-        }
-        else{
+        } else {
             return popElementHead(list);
         }
         while (nextNode) {
@@ -81,7 +80,7 @@ void pushElementHead(LinkedList* list, int value)
     list->head = node;
 }
 
-void pushElementBack(LinkedList* list, int value) 
+void pushElementBack(LinkedList* list, int value)
 {
     if (!isEmpty(list)) {
         struct LinkedListNode* prevNode = list->head;
@@ -96,24 +95,23 @@ void pushElementBack(LinkedList* list, int value)
     } else {
         pushElementHead(list, value);
     }
-
 }
 
-void reverse(LinkedList* list){
+void reverse(LinkedList* list)
+{
     if (!isEmpty(list)) {
         struct LinkedListNode* prevNode = NULL;
         struct LinkedListNode* currNode = list->head;
-        if (!currNode){
+        if (!currNode) {
             return;
         }
-        while(currNode){
+        while (currNode) {
             struct LinkedListNode* next = currNode->next;
-            
+
             currNode->next = prevNode;
 
             prevNode = currNode;
             currNode = next;
         }
-    } 
-
+    }
 }

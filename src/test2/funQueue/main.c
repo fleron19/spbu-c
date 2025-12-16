@@ -1,7 +1,8 @@
 #include "linkedList.h"
 #include <stdio.h>
 
-int main(){
+int main()
+{
     LinkedList* list = newLinkedList();
     pushElementHead(list, 1);
     pushElementHead(list, 2);
