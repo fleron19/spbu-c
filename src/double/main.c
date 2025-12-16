@@ -8,7 +8,7 @@ typedef union {
     unsigned char bytes[8];
 } DoubleBits;
 
-void prinSm2p(double x)
+void printSm2p(double x)
 {
     double_bits db;
     memcpy(db.bytes, &x, sizeof db.bytes);
