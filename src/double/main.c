@@ -6,7 +6,7 @@ typedef union {
     double d;
     uint64_t u;
     unsigned char bytes[8];
-} double_bits;
+} DoubleBits;
 
 void prinSm2p(double x)
 {
