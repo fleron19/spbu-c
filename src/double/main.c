@@ -1,22 +1,29 @@
 #include <stdint.h>
 #include <stdio.h>
-#include <string.h>
 
 typedef union {
     double d;
     uint64_t u;
-    unsigned char bytes[8];
+    struct {
+#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+        uint64_t frac : 52;
+        uint64_t exp  : 11;
+        uint64_t sign : 1;
+#else
+        uint64_t sign : 1;
+        uint64_t exp  : 11;
+        uint64_t frac : 52;
+#endif
+    } parts;
 } double_bits;
 
 void prinSm2p(double x)
 {
     double_bits db;
-    memcpy(db.bytes, &x, sizeof db.bytes);
-    uint64_t u = db.u;
-
-    int sign = (u >> 63) & 1;
-    uint64_t exp_bits = (u >> 52) & 0x7FFULL;
-    uint64_t frac = u & ((1ULL << 52) - 1);
+    db.d = x;
+    int sign = db.parts.sign;
+    uint64_t exp_bits = db.parts.exp;
+    uint64_t frac = db.parts.frac;
     const int bias = 1023;
 
     if (exp_bits == 0) {
@@ -32,10 +39,7 @@ void prinSm2p(double x)
 int main(void)
 {
     double x;
-    if (printf("Enter a number: "), fflush(stdout), scanf("%lf", &x) == 1) {
-        prinSm2p(x);
-    } else {
-        printf("Error!\n");
-    }
+    printf("Enter a number: ");
+    if (scanf("%lf", &x) == 1) prinSm2p(x);
     return 0;
 }
