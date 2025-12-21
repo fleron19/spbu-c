@@ -28,7 +28,13 @@ int main()
 {
     SortedList* list = newSortedList();
     int inp = 0;
-    printf("Введите номер операции: ");
+    printf("Это программа для оперирования сортированным списком\n");
+    printf("Список операций:\n");
+    printf("0 - выйти\n");
+    printf("1 - добавить значение в сортированный список\n");
+    printf("2 - удалить значение из списка\n");
+    printf("3 - распечатать список\n");
+    printf("Введите номер операции:\n");
     scanf("%d", &inp);
     while (inp) {
         listOperations(list, inp);

@@ -25,7 +25,7 @@ void pushElement(SortedList* list, int value)
     list->head = node;
     struct SortedListNode* prevNode = NULL;
     struct SortedListNode* currNode = node->next;
-    while (currNode) {
+    while (currNode != NULL) {
         if (value > currNode->value) {
             node->next = currNode->next;
             currNode->next = node;
@@ -70,25 +70,26 @@ void printSortedList(SortedList* list)
     }
 }
 
-int deleteElement(SortedList* list, int value) // Using int so we can return 1 if deleted value was in list
+// Using bool so we return true or false depending on was the value in the list
+bool deleteElement(SortedList* list, int value) 
 {
-    if (!isEmpty(list)) {
-        struct SortedListNode* prevNode = NULL;
-        struct SortedListNode* currNode = list->head;
-        while (currNode) {
-            if (value == currNode->value) {
-                if (prevNode) {
-                    prevNode->next = currNode->next;
-                } else {
-                    list->head = currNode->next;
-                }
-                free(currNode);
-                return 1;
-            }
-            prevNode = currNode;
-            currNode = currNode->next;
-        }
-    } else {
-        return 0;
+    if (isEmpty(list)) {
+        return false;
     }
+    struct SortedListNode* prevNode = NULL;
+    struct SortedListNode* currNode = list->head;
+    while (currNode) {
+        if (value == currNode->value) {
+            if (prevNode) {
+                prevNode->next = currNode->next;
+            } else {
+                list->head = currNode->next;
+            }
+            free(currNode);
+            return true;
+        }
+        prevNode = currNode;
+        currNode = currNode->next;
+    }
+    return false; // value was not presented
 }
