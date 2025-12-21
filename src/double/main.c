@@ -31,7 +31,7 @@ void printSm2p(double x)
         return;
     }
 
-    int exp_unbiased = (int)exp_bits - bias;
+    int expUnbiased = (int)expBits - bias;
     double mantissa = 1.0 + (double)frac / (double)(1ULL << 52);
     printf("Result: %c%.20g*2^%d\n", sign ? '-' : '+', mantissa, exp_unbiased);
 }
