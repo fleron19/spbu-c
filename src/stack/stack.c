@@ -4,7 +4,7 @@
 struct StackNode {
     char value;
     struct StackNode* next;
-} __attribute__((aligned(16)));
+};
 struct Stack {
     struct StackNode* head;
 };
@@ -25,10 +25,6 @@ void push(Stack* stack, char value)
 }
 char pop(Stack* stack)
 {
-    if (isEmpty(stack)) {
-        free(stack);
-        exit(1);
-    }
     struct StackNode* oldNode = stack->head;
     char res = oldNode->value;
     stack->head = oldNode->next;
