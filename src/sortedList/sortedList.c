@@ -71,7 +71,7 @@ void printSortedList(SortedList* list)
 }
 
 // Using bool so we return true or false depending on was the value in the list
-bool deleteElement(SortedList* list, int value) 
+bool deleteElement(SortedList* list, int value)
 {
     if (isEmpty(list)) {
         return false;
