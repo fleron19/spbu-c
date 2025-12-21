@@ -32,16 +32,18 @@ void listOperations(SortedList* list, int inp)
 bool testIsEmpty()
 {
     SortedList* list = newSortedList();
-    return isEmpty(list);
+    bool res = isEmpty(list);
     deleteSortedList(list);
+    return res;
 }
 
 bool testOneElement()
 {
     SortedList* list = newSortedList();
     pushElement(list, 1);
-    return !isEmpty(list);
+    bool res = !isEmpty(list);
     deleteSortedList(list);
+    return res;
 }
 
 bool testDeletion()
@@ -49,8 +51,41 @@ bool testDeletion()
     SortedList* list = newSortedList();
     pushElement(list, 1);
     deleteElement(list, 1);
-    return isEmpty(list);
+    bool res = isEmpty(list);
     deleteSortedList(list);
+    return res;
+}
+
+bool testDeletionNot()
+{
+    SortedList* list = newSortedList();
+    pushElement(list, 1);
+    bool res = deleteElement(list, 2);
+    return !res;
+}
+
+bool testInvariant()
+{
+    SortedList* list = newSortedList();
+    pushElement(list, 3);
+    pushElement(list, 2);
+    pushElement(list, 1);
+    int expected[3] = { 1, 2, 3 };
+    bool res = compareSortedListAndArray(list, expected, 3);
+    deleteSortedList(list);
+    return res;
+}
+
+bool testSame()
+{
+    SortedList* list = newSortedList();
+    pushElement(list, 2);
+    pushElement(list, 3);
+    pushElement(list, 2);
+    int expected[3] = { 2, 2, 3 };
+    bool res = compareSortedListAndArray(list, expected, 3);
+    deleteSortedList(list);
+    return res;
 }
 
 int main(int argc, char** argv)
@@ -64,8 +99,9 @@ int main(int argc, char** argv)
     }
 
     if (testMode) {
-        bool (*tests[3])() = { &testIsEmpty, &testOneElement, &testDeletion };
-        for (int testNum = 0; testNum < 3; ++testNum) {
+        bool (*tests[6])() = { &testIsEmpty, &testOneElement, &testDeletion,
+            &testInvariant, &testSame, &testDeletionNot };
+        for (int testNum = 0; testNum < 6; ++testNum) {
             if (tests[testNum]()) {
                 printf(GREEN("Test %d passed!\n"), testNum + 1);
             } else {
