@@ -10,4 +10,5 @@ char pop(Stack* stack);
 bool isEmpty(Stack* stack);
 // every created stack should be eventually deleted using this function to prevent memory leakage
 void deleteStack(Stack* stack);
+// can see top element non-empty stack, checking it with isEmpty before opping is necessary
 char top(Stack* stack);

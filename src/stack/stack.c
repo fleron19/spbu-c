@@ -46,8 +46,5 @@ void deleteStack(Stack* stack)
 
 char top(Stack* stack)
 {
-    if (!isEmpty(stack)) {
-        return stack->head->value;
-    }
-    return '\0';
+    return stack->head->value;
 }

@@ -5,9 +5,9 @@
 #include <string.h>
 int operatorPriority(char op1, char op2) // 0 - одинаковый приоритет, 1 - op1 приоритетнее, 2 - op2 приоритетнее
 {
-    if (op1 == '+' || op1 == '-' && op2 == '*' || op2 == '/') {
+    if ((op1 == '+') || (op1 == '-') && (op2 == '*') || (op2 == '/')) {
         return 2;
-    } else if (op1 == '*' || op1 == '/' && op2 == '-' || op2 == '+') {
+    } else if ((op1 == '*') || (op1 == '/') && (op2 == '-') || (op2 == '+')) {
         return 1;
     }
     return 0;
@@ -22,33 +22,43 @@ char* sortingStation(char* str)
 {
     char space = ' ';
     Stack* stack = newStack();
-    char* ret = (char*)malloc(sizeof(char) * 200);
+    char* ret = (char*)calloc(2 * strlen(str), sizeof(char)); // already fills with \0 => res is C-string
     for (int i = 0; i < strlen(str); i++) {
         char sym = str[i];
         if (isdigit(sym)) {
             strncat(ret, &sym, 1);
             strncat(ret, &space, 1);
         } else if (isOperator(sym)) {
-            while (isOperator(top(stack))) {
-                if (operatorPriority(top(stack), sym) <= 1) {
-                    char token = pop(stack);
-                    strncat(ret, &token, 1);
-                    strncat(ret, &space, 1);
-                } else {
-                    break;
+            if (!isEmpty(stack)) { 
+                while (isOperator(top(stack))) {
+                    if (operatorPriority(top(stack), sym) <= 1) {
+                        char token = pop(stack);
+                        strncat(ret, &token, 1);
+                        strncat(ret, &space, 1);
+                    } else {
+                        break;
+                    }
+                    if (isEmpty(stack)) {
+                        break;
+                    }
                 }
             }
             push(stack, sym);
         } else if (sym == '(') {
             push(stack, sym);
-        } else if (str[i] == ')') {
+        } else if (sym == ')') {
+            if (isEmpty(stack)) {
+                deleteStack(stack);
+                return "Error! Missing bracket!";
+            }
             while (top(stack) != '(') {
-                if (isEmpty(stack)) {
-                    return "Error! Missing bracket!";
-                }
                 char token = pop(stack);
                 strncat(ret, &token, 1);
                 strncat(ret, &space, 1);
+                if (isEmpty(stack)) {
+                    deleteStack(stack);
+                    return "Error! Missing bracket!";
+                }
             }
             pop(stack);
         }
@@ -56,6 +66,7 @@ char* sortingStation(char* str)
     while (!isEmpty(stack)) {
         char op = pop(stack);
         if (op == '(') {
+            deleteStack(stack);
             return "Error! Missing bracket!";
         } else if (isOperator(op)) {
             strncat(ret, &op, 1);
@@ -63,7 +74,6 @@ char* sortingStation(char* str)
         }
     }
     deleteStack(stack);
-    ret[strlen(ret) - 1] = '\0';
     return ret;
 }
 int main(void)
@@ -72,5 +82,6 @@ int main(void)
     scanf("%[^\n]", input);
     char* res = sortingStation(input);
     printf("%s\n", res);
+    free(res);
     return 0;
 }
