@@ -1,5 +1,6 @@
 #pragma once
 #include <stdbool.h>
+#include <stddef.h>
 
 typedef struct SortedList SortedList;
 
@@ -15,3 +16,5 @@ bool isEmpty(SortedList* list);
 void deleteSortedList(SortedList* list);
 // prints values of SortedList
 void printSortedList(SortedList* list);
+// compares values of a sorted list and an array (true = equals, false = differs)
+int compareSortedListAndArray(SortedList* list, int* arr, size_t arrSize);

@@ -93,3 +93,21 @@ bool deleteElement(SortedList* list, int value)
     }
     return false; // value was not presented
 }
+
+int compareSortedListAndArray(SortedList* list, int* arr, size_t arrSize)
+{
+    if (isEmpty(list) && arrSize == 0) {
+        return true;
+    }
+    if (isEmpty(list) && arrSize == 0) {
+        return false;
+    }
+    struct SortedListNode* elem = list->head;
+    for (int i = 0; i < arrSize; i++) {
+        if (arr[i] != elem->value) {
+            return false;
+        }
+        elem = elem->next;
+    }
+    return elem == NULL;
+}
