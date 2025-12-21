@@ -38,7 +38,7 @@ void printSm2p(double x)
 
 int main(void)
 {
-    double x;
+    double x = 0.0;
     printf("Enter a number: ");
     scanf("%lf", &x);
     printSm2p(x);
