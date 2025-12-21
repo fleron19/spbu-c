@@ -19,8 +19,7 @@ typedef union {
 
 void printSm2p(double x)
 {
-    doubleBits db;
-    db.d = x;
+    doubleBits db = { .d = x };
     int sign = db.parts.sign;
     uint64_t exp_bits = db.parts.exp;
     uint64_t frac = db.parts.frac;
