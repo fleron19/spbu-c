@@ -82,5 +82,6 @@ int main(void)
     scanf("%[^\n]", input);
     char* res = sortingStation(input);
     printf("%s\n", res);
+    free(res);
     return 0;
 }
