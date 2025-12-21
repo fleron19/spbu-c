@@ -5,9 +5,9 @@
 #include <string.h>
 int operatorPriority(char op1, char op2) // 0 - одинаковый приоритет, 1 - op1 приоритетнее, 2 - op2 приоритетнее
 {
-    if ((op1 == '+') || (op1 == '-') && (op2 == '*') || (op2 == '/')) {
+    if ((op1 == '+' || op1 == '-') && (op2 == '*' || op2 == '/')) {
         return 2;
-    } else if ((op1 == '*') || (op1 == '/') && (op2 == '-') || (op2 == '+')) {
+    } else if ((op1 == '*' || op1 == '/') && (op2 == '-' || op2 == '+')) {
         return 1;
     }
     return 0;
@@ -23,7 +23,7 @@ char* sortingStation(char* str)
     char space = ' ';
     Stack* stack = newStack();
     char* ret = (char*)calloc(2 * strlen(str), sizeof(char)); // already fills with \0 => res is C-string
-    for (int i = 0; i < strlen(str); i++) {
+    for (size_t i = 0; i < strlen(str); i++) {
         char sym = str[i];
         if (isdigit(sym)) {
             strncat(ret, &sym, 1);
@@ -82,6 +82,5 @@ int main(void)
     scanf("%[^\n]", input);
     char* res = sortingStation(input);
     printf("%s\n", res);
-    free(res);
     return 0;
 }
