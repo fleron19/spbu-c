@@ -1,5 +1,4 @@
 #include "stack.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 struct StackNode {
@@ -24,12 +23,8 @@ void push(Stack* stack, char value)
     node->next = stack->head;
     stack->head = node;
 }
-
 char pop(Stack* stack)
 {
-    if (stack->head == NULL) {
-        return '\0';
-    }
     struct StackNode* oldNode = stack->head;
     char res = oldNode->value;
     stack->head = oldNode->next;
@@ -37,12 +32,10 @@ char pop(Stack* stack)
     free(oldNode);
     return res;
 }
-
 bool isEmpty(Stack* stack)
 {
     return stack->head == NULL;
 }
-
 void deleteStack(Stack* stack)
 {
     while (!isEmpty(stack)) {
