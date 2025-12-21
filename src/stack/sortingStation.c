@@ -29,7 +29,7 @@ char* sortingStation(char* str)
             strncat(ret, &sym, 1);
             strncat(ret, &space, 1);
         } else if (isOperator(sym)) {
-            if (!isEmpty(stack)) { 
+            if (!isEmpty(stack)) {
                 while (isOperator(top(stack))) {
                     if (operatorPriority(top(stack), sym) <= 1) {
                         char token = pop(stack);
