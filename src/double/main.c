@@ -7,11 +7,11 @@ typedef union {
     struct {
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
         uint64_t frac : 52;
-        uint64_t exp  : 11;
+        uint64_t exp : 11;
         uint64_t sign : 1;
 #else
         uint64_t sign : 1;
-        uint64_t exp  : 11;
+        uint64_t exp : 11;
         uint64_t frac : 52;
 #endif
     } parts;
