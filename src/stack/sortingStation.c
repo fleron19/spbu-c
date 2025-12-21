@@ -48,6 +48,7 @@ char* sortingStation(char* str)
             push(stack, sym);
         } else if (sym == ')') {
             if (isEmpty(stack)) {
+                free(ret);
                 char* err = strdup("Error! Missing bracket!");
                 deleteStack(stack);
                 return err;
@@ -57,6 +58,7 @@ char* sortingStation(char* str)
                 strncat(ret, &token, 1);
                 strncat(ret, &space, 1);
                 if (isEmpty(stack)) {
+                    free(ret);
                     char* err = strdup("Error! Missing bracket!");
                     deleteStack(stack);
                     return err;
@@ -68,6 +70,7 @@ char* sortingStation(char* str)
     while (!isEmpty(stack)) {
         char op = pop(stack);
         if (op == '(') {
+            free(ret);
             char* err = strdup("Error! Missing bracket!");
             deleteStack(stack);
             return err;
